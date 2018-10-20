@@ -1,0 +1,6 @@
+#!/Users/KaTaiHo/Desktop/GitHub/HackTX2018/speech/speech/bin/python2.7
+
+import sys
+
+from grammar_check import main
+sys.exit(main.main())
