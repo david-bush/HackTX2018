@@ -21,6 +21,7 @@ export default class App extends Component {
      value: 0,
    };
 
+
    handleChange = (event, value) => {
      this.setState({ value });
    };
@@ -32,8 +33,9 @@ export default class App extends Component {
 
           <AppBar position="static" item xs={24}>
             <Toolbar>
+              <img style={{width: '75px', height: '75px'}} src="http://logok.org/wp-content/uploads/2014/02/American-Airlines-Eagle-logo.png"></img>
               <Typography variant="h4" color="inherit">
-                HackTX
+                American Airlines Sentiment Analysis Dashboard
               </Typography>
             </Toolbar>
           </AppBar>
