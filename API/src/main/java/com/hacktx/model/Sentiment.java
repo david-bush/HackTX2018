@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "sentiments")
-public class Sentiment {
-	private String language;
-	private List<String> keyPhrases;
-	private double sentiment;
-	private String originalString;
+ public abstract class Sentiment {
+	protected String language;
+	protected List<String> keyPhrases;
+	protected double sentiment;
+	protected String originalString;
 	
 	public Sentiment(String language, List<String> keyPhrases, double sentiment, String originalString) {
 		super();
