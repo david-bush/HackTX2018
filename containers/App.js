@@ -34,7 +34,7 @@ export default class App extends Component {
             <Toolbar>
               <img style={{width: '75px', height: '75px'}} src="http://logok.org/wp-content/uploads/2014/02/American-Airlines-Eagle-logo.png"></img>
               <Typography variant="h4" color="inherit">
-                American Airlines Sentiment Analysis Dashboard
+                Air Thoughts
               </Typography>
             </Toolbar>
           </AppBar>
