@@ -13,128 +13,7 @@ import Input from '@material-ui/core/Input';
 import { BarChart,CartesianGrid,XAxis,YAxis,Tooltip,Legend,Bar} from 'recharts';
 
 
-const data1=[
-    {
-      "category": "flight",
-      "flightNumber": 2442,
-      "listPhrases": "[u'flight attendants', u'kind']",
-      "score": "0.83468657732"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2426,
-      "listPhrases": "[u'flight attendant', u'drink']",
-      "score": "0.229708462954"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2477,
-      "listPhrases": "[u'good time', u'flight']",
-      "score": "0.828310549259"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2495,
-      "listPhrases": "[u'seat', u'plane']",
-      "score": "0.955289363861"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2425,
-      "listPhrases": "[u'flight']",
-      "score": "0.865471839905"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2419,
-      "listPhrases": "[u'flight attendants', u'food']",
-      "score": "0.0538561046124"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 447,
-      "listPhrases": "[u'flight', u'time']",
-      "score": "0.246974289417"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2103,
-      "listPhrases": "[u'service', u'flight']",
-      "score": "0.812149822712"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 6041,
-      "listPhrases": "[u'service', u'flight']",
-      "score": "0.878552317619"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 761,
-      "listPhrases": "[u'people', u'flight']",
-      "score": "0.18945389986"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2460,
-      "listPhrases": "[u'seat', u'plan']",
-      "score": "0.0544140040874"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2479,
-      "listPhrases": "[u'flight attendants']",
-      "score": "0.229652315378"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 1627,
-      "listPhrases": "[u'good job', u'flight enjoyable', u'pilot']",
-      "score": "0.933033287525"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2510,
-      "listPhrases": "[u'rest', u'plane']",
-      "score": "0.892666339874"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 152,
-      "listPhrases": "[u'American Airlines']",
-      "score": "0.948495864868"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2424,
-      "listPhrases": "[u'flight']",
-      "score": "0.00569546222687"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2463,
-      "listPhrases": "[u'flight attendants', u'experience']",
-      "score": "0.779909133911"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 2424,
-      "listPhrases": "[u'content', u'experience']",
-      "score": "0.90461564064"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 1246,
-      "listPhrases": "[u'flight attendants']",
-      "score": "0.174895524979"
-    },
-    {
-      "category": "flight",
-      "flightNumber": 1159,
-      "listPhrases": "[u'flight']",
-      "score": "0.842966794968"
-    }
-  ];
+
 export default class FlightSentiment extends Component {
   constructor(){
       super();
@@ -196,7 +75,7 @@ export default class FlightSentiment extends Component {
 
   render () {
     console.log(this.state.sentiments);
-    
+
     var arr = [];
     if (this.state.isLoaded){
       for (var i = 0; i < 20; i++) {

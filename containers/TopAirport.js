@@ -17,7 +17,7 @@ export default class AirportSentiment extends Component {
   constructor(){
       super();
       this.state = {
-          sentiments: [],
+          categories: [],
           textFieldValue:"",
           isLoaded:false
       }
@@ -27,12 +27,12 @@ export default class AirportSentiment extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://10.147.163.107:5000/api/airport_data')
+    axios.get('http://10.147.163.107:5000/api/top_airport_categories')
         .then(response => {
               //console.log(response.json);
               console.log(response.data.result);
-              this.setState({sentiments: response.data.result, isLoaded:true});
-              console.log(this.state.sentiments);
+              this.setState({categories: response.data.result, isLoaded:true});
+              console.log(this.state.categories);
 //                 this.setState( (state) => {
 //     state.sentiments = state.sentiments.concat(response.data);
 //     return state;
@@ -84,7 +84,7 @@ export default class AirportSentiment extends Component {
     }
 
   render () {
-    console.log(this.state.sentiments);
+    console.log(this.state.categories);
     // return (
     //   <p>{this.state.sentiments[0].score}</p>
     // );
@@ -99,8 +99,8 @@ export default class AirportSentiment extends Component {
     for (var i = 0; i < 20; i++) {
       //if (this.state.sentiments[i].category==='airport'){
         arr.push({
-          airportCode: this.state.sentiments[i].airportCode,
-          score: this.state.sentiments[i].score
+          categories: this.state.categories[i][0],
+          count: this.state.categories[i][1]
         });
       //}
     }
@@ -108,19 +108,15 @@ export default class AirportSentiment extends Component {
     }
     return (
       <div>
-        <div style={{margin:30}}>
-            <Input placeholder="Enter in an airport" onChange={this.handleInputChange}/>
-            <Button variant="outlined" color="primary" onClick={this.fetchAirportSentiment}>Search</Button>
-        </div>
         <div>
           <BarChart width={1500} height={500} data={arr}
-            margin={{top: 5, right: 30, left: 50, bottom: 5}}>
+            margin={{top: 30, right: 30, left: 50, bottom: 5}}>
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="airportCode"/>
+            <XAxis dataKey="categories"/>
             <YAxis/>
             <Tooltip/>
             <Legend />
-            <Bar dataKey="score" fill="#8884d8" />
+            <Bar dataKey="count" fill="#8884d8" />
           </BarChart>
         </div>
       </div>

@@ -10,10 +10,10 @@ import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import AirportSentiment from './AirportSentiment.js';
 import FlightSentiment from './FlightSentiment.js';
-import HomeDepot from './HomeDepot.js';
+import TopAirport from './TopAirport.js';
 import Paper from '@material-ui/core/Paper';
 import TopCategories from './TopCategories.js';
-
+import Demo from './Demo.js';
 
 export default class App extends Component {
   state = {
@@ -44,15 +44,17 @@ export default class App extends Component {
           <Tabs value={value} onChange={this.handleChange} centered>
             <Tab label="Airport Sentiment" />
             <Tab label="Flight Sentiment" />
-            <Tab label="Top Categories" />
+            <Tab label="Top Airport Categories"/>
+            <Tab label="Top Flight Categories" />
             <Tab label="Demo"/>
           </Tabs>
         </AppBar>
         </div>
         {value === 0 && <AirportSentiment>{"Item One"}</AirportSentiment>}
         {value === 1 && <FlightSentiment>{"Item Two"}</FlightSentiment>}
-        {value === 2 && <TopCategories>{"Item Three"}</TopCategories>}
-        {value === 3 && <HomeDepot>{"Item Four"}</HomeDepot>}
+        {value === 2 && <TopAirport>{"Item Three"}</TopAirport>}
+        {value === 3 && <TopCategories>{"Item Four"}</TopCategories>}
+        {value === 4 && <Demo>{"Item Five"}</Demo>}
 
       </div>
     );

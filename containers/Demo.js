@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { BarChart,CartesianGrid,XAxis,YAxis,Tooltip,Legend,Bar} from 'recharts';
 
-export default class AirportSentiment extends Component {
+export default class Demo extends Component {
 
   constructor(){
       super();
@@ -27,7 +27,7 @@ export default class AirportSentiment extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://10.147.163.107:5000/api/airport_data')
+    axios.get('http://10.147.163.107:5000/api/new_data')
         .then(response => {
               //console.log(response.json);
               console.log(response.data.result);
@@ -96,15 +96,14 @@ export default class AirportSentiment extends Component {
     // console.log(this.state.sentiments[0].category);
     var arr = [];
     if (this.state.isLoaded){
-    for (var i = 0; i < 20; i++) {
-      //if (this.state.sentiments[i].category==='airport'){
-        arr.push({
-          airportCode: this.state.sentiments[i].airportCode,
-          score: this.state.sentiments[i].score
-        });
-      //}
-    }
-    //console.log(arr);
+    // for (var i = 0; i < 20; i++) {
+    //   //if (this.state.sentiments[i].category==='airport'){
+    //     arr.push({
+    //       element:this.state.sentiments
+    //     });
+    //   //}
+    // }
+    console.log(arr);
     }
     return (
       <div>
@@ -113,19 +112,10 @@ export default class AirportSentiment extends Component {
             <Button variant="outlined" color="primary" onClick={this.fetchAirportSentiment}>Search</Button>
         </div>
         <div>
-          <BarChart width={1500} height={500} data={arr}
-            margin={{top: 5, right: 30, left: 50, bottom: 5}}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="airportCode"/>
-            <YAxis/>
-            <Tooltip/>
-            <Legend />
-            <Bar dataKey="score" fill="#8884d8" />
-          </BarChart>
+         <div><pre>{JSON.stringify(this.state.sentiments, null, 10) }</pre></div>
+
         </div>
       </div>
-
-
     );
   }
 }
