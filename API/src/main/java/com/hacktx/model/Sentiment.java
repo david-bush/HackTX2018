@@ -2,6 +2,9 @@ package com.hacktx.model;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "sentiments")
 public class Sentiment {
 	private String language;
 	private List<String> keyPhrases;
