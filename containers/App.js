@@ -8,12 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
-import TabContainer from './TabContainer.js';
 import AirportSentiment from './AirportSentiment.js';
 import FlightSentiment from './FlightSentiment.js';
 import HomeDepot from './HomeDepot.js';
 import Paper from '@material-ui/core/Paper';
-
+import TopCategories from './TopCategories.js';
 
 
 export default class App extends Component {
@@ -33,7 +32,7 @@ export default class App extends Component {
           <AppBar position="static" item xs={24}>
             <Toolbar>
               <Typography variant="h4" color="inherit">
-                HackTX
+                Air Thoughts
               </Typography>
             </Toolbar>
           </AppBar>
@@ -43,12 +42,15 @@ export default class App extends Component {
           <Tabs value={value} onChange={this.handleChange} centered>
             <Tab label="Airport Sentiment" />
             <Tab label="Flight Sentiment" />
-
+            <Tab label="Top Categories" />
+            <Tab label="Demo"/>
           </Tabs>
         </AppBar>
         </div>
         {value === 0 && <AirportSentiment>{"Item One"}</AirportSentiment>}
         {value === 1 && <FlightSentiment>{"Item Two"}</FlightSentiment>}
+        {value === 2 && <TopCategories>{"Item Three"}</TopCategories>}
+        {value === 3 && <HomeDepot>{"Item Four"}</HomeDepot>}
 
       </div>
     );

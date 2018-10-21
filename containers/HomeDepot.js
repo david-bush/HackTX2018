@@ -31,7 +31,6 @@ export default class AirportSentiment extends Component {
           textFieldValue:""
 
       }
-      this.fetchAirportSentiment = this.fetchAirportSentiment.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
 
   }
@@ -56,14 +55,7 @@ export default class AirportSentiment extends Component {
             }
           )
       }*/
-    fetchAirportSentiment(){
-      axios.get('http://awesomeserver/users.username')
-          .then(res => {
-               return res.json()
-          }).then(response => {
-                this.setState({sentiments: response.sentiments})
-           })
-    }
+
 
     handleInputChange(){
         this.setState({
@@ -74,20 +66,7 @@ export default class AirportSentiment extends Component {
   render () {
     return (
       <div>
-      <div style={{margin:30}}>
-          <Input placeholder="Enter in an airport" onChange={this.handleInputChange}/>
-          <Button variant="outlined" color="primary" onClick={this.fetchAirportSentiment}>Search</Button>
-      </div>
-      <BarChart width={600} height={300} data={data}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <CartesianGrid strokeDasharray="3 3"/>
-       <XAxis dataKey="name"/>
-       <YAxis/>
-       <Tooltip/>
-       <Legend />
-       <Bar dataKey="pv" fill="#8884d8" />
-       <Bar dataKey="uv" fill="#82ca9d" />
-      </BarChart>
+      <p></p>
       </div>
     );
   }
