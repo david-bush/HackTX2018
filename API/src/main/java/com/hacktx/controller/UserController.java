@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -21,8 +22,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.hacktx.model.Airport;
+import com.hacktx.model.Flight;
 import com.hacktx.model.Sentiment;
 import com.hacktx.model.User;
+import com.hacktx.repository.AirportRepository;
+import com.hacktx.repository.FlightRepository;
 import com.hacktx.repository.SentimentRepository;
 import com.hacktx.repository.UserDataRepository;
 
@@ -41,9 +46,35 @@ public class UserController {
 	@Autowired
 	SentimentRepository sentimentRepository;
 	
+	@Autowired
+	AirportRepository airportRepository;
+	
+	@Autowired
+	FlightRepository flightRepository;
+	
 	@RequestMapping(path = "/getAllUsers", method = RequestMethod.GET)
 	public List<User> getAllUsers() {
 		return userDataRepository.findAllUsers();
+	}
+	
+	@RequestMapping(path = "/getAllAirportCodes", method = RequestMethod.GET)
+	public List<String> getAllAirportCodes() {
+		return airportRepository.getAllAirportCodes();
+	}
+	
+	@RequestMapping(path = "/getAllAirports", method = RequestMethod.GET)
+	public List<Airport> getAllAirports() {
+		return airportRepository.getAllAirports();
+	}
+	
+	@RequestMapping(path = "/getAllFlightNumbers", method = RequestMethod.GET)
+	public Set<String> getAllFlightNumbers() {
+		return flightRepository.getAllFlightNumbers();
+	}
+	
+	@RequestMapping(path = "/getAllFlights", method = RequestMethod.GET)
+	public List<Flight> getAllFlights() {
+		return flightRepository.getAllFlights();
 	}
 	
 	@RequestMapping(path = "/processConversations", method = RequestMethod.GET)
