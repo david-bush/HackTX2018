@@ -140,19 +140,25 @@ export default class FlightSentiment extends Component {
       super();
       this.state = {
           sentiments: [],
-          textFieldValue:""
+          textFieldValue:"",
+          isLoaded:false
 
       }
       this.fetchFlightSentiment = this.fetchFlightSentiment.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
 
   }
-  // componentDidMount() {
-  //   axios.get('http://10.147.163.107:5000/api/flight_data')
-  //       .then(response => {
-  //             this.setState({sentiments: response.result})
-  //        })
-  // }
+  componentDidMount() {
+    axios.get('http://10.147.163.107:5000/api/flight_data')
+        .then(response => {
+              console.log(response.data.result);
+              this.setState({sentiments: response.data.result, isLoaded:true});
+              console.log(this.state.sentiments);
+
+        }),
+	       (error) => { console.log(error) };
+
+  }
     /*componentDidMount() {
         fetch("https://api.example.com/items")
           .then(res => res.json())
@@ -189,28 +195,36 @@ export default class FlightSentiment extends Component {
     }
 
   render () {
+    console.log(this.state.sentiments);
+    
     var arr = [];
-    for (var i = 0; i < 20; i++) {
-      //if (data1[i].category==='flight'){
+    if (this.state.isLoaded){
+      for (var i = 0; i < 20; i++) {
+      if (this.state.sentiments[i].category==='flight'){
         arr.push({
-          flightCode: data1[i].flightNumber,
-          score: data1[i].score
+          flightNumber: this.state.sentiments[i].flightNumber,
+          score: this.state.sentiments[i].score
         });
-      //}
+      }
+      }
     }
     return (
-      <div style={{margin:30}}>
+      <div>
+        <div style={{margin:30}}>
           <Input placeholder="Enter in a flight" onChange={this.handleInputChange} />
           <Button variant="outlined" color="primary" onClick={this.fetchFlightSentiment}>Search</Button>
+        </div>
+        <div>
           <BarChart width={1500} height={500} data={arr}
-            margin={{top: 5, right: 30, left: 40, bottom: 5}}>
-          <CartesianGrid strokeDasharray="3 3"/>
-          <XAxis dataKey="flightNumber"/>
-          <YAxis/>
-          <Tooltip/>
-          <Legend />
-          <Bar dataKey="score" fill="#8884d8" />
+            margin={{top: 5, right: 30, left: 50, bottom: 5}}>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="flightNumber"/>
+            <YAxis/>
+            <Tooltip/>
+            <Legend />
+            <Bar dataKey="score" fill="#8884d8" />
           </BarChart>
+        </div>
       </div>
     );
   }

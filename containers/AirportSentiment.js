@@ -20,25 +20,28 @@ export default class AirportSentiment extends Component {
       this.state = {
           sentiments: [],
           textFieldValue:"",
-
+          isLoaded:false
       }
       this.fetchAirportSentiment = this.fetchAirportSentiment.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
 
   }
 
-//   componentDidMount() {
-//     axios.get('http://10.147.163.107:5000/api/airport_data')
-//         .then(response => {
-//               console.log(response.json;
-//               this.setState({sentiments: response.data.result});
-//               //console.log(this.state.sentiments);
-// //                 this.setState( (state) => {
-// //     state.sentiments = state.sentiments.concat(response.data);
-// //     return state;
-// // });
-//     });
-//   }
+  componentDidMount() {
+    axios.get('http://10.147.163.107:5000/api/airport_data')
+        .then(response => {
+              //console.log(response.json);
+              console.log(response.data.result);
+              this.setState({sentiments: response.data.result, isLoaded:true});
+              console.log(this.state.sentiments);
+//                 this.setState( (state) => {
+//     state.sentiments = state.sentiments.concat(response.data);
+//     return state;
+// });
+        }),
+	       (error) => { console.log(error) };
+
+  }
 
   // componentDidMount() {
   //   // http://10.147.163.107:5000/api/airport_data
@@ -82,7 +85,7 @@ export default class AirportSentiment extends Component {
     }
 
   render () {
-    //console.log(this.state.sentiments);
+    console.log(this.state.sentiments);
     // return (
     //   <p>{this.state.sentiments[0].score}</p>
     // );
@@ -92,18 +95,18 @@ export default class AirportSentiment extends Component {
     // console.log(json['category']);
     // console.log(this.state.sentiments[0]);
     // console.log(this.state.sentiments[0].category);
-
     var arr = [];
+    if (this.state.isLoaded){
     for (var i = 0; i < 20; i++) {
       //if (this.state.sentiments[i].category==='airport'){
         arr.push({
-          airportCode: data1[i].airportCode,
-          score: data1[i].score
+          airportCode: this.state.sentiments[i].airportCode,
+          score: this.state.sentiments[i].score
         });
       //}
     }
-    console.log(arr);
-
+    //console.log(arr);
+    }
     return (
       <div>
         <div style={{margin:30}}>
@@ -111,15 +114,15 @@ export default class AirportSentiment extends Component {
             <Button variant="outlined" color="primary" onClick={this.fetchAirportSentiment}>Search</Button>
         </div>
         <div>
-        <BarChart width={1500} height={500} data={arr}
-          margin={{top: 5, right: 30, left: 50, bottom: 5}}>
-        <CartesianGrid strokeDasharray="3 3"/>
-        <XAxis dataKey="airportCode"/>
-        <YAxis/>
-        <Tooltip/>
-        <Legend />
-        <Bar dataKey="score" fill="#8884d8" />
-        </BarChart>
+          <BarChart width={1500} height={500} data={arr}
+            margin={{top: 5, right: 30, left: 50, bottom: 5}}>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="airportCode"/>
+            <YAxis/>
+            <Tooltip/>
+            <Legend />
+            <Bar dataKey="score" fill="#8884d8" />
+          </BarChart>
         </div>
       </div>
 
