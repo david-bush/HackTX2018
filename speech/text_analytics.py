@@ -54,7 +54,7 @@ def parse_text(src_path):
     return documents
 
 
-def extract(doc):
+def extract(doc, category):
     sentiments = get_sentiments(doc)['documents']
     entities = get_entities(doc)['documents']
     key_phrases = get_key_phrases(doc)['documents']
@@ -72,6 +72,7 @@ def extract(doc):
 
     result_dict = {}
     result_dict['result'] = results
+    result_dict['category'] = category
     results_json = json.dumps(result_dict)
     return results_json
 
@@ -83,13 +84,18 @@ def send_data_to_david(api_url, result):
     # print(response.status)
             
 if __name__ == "__main__":
+    documents = {'documents' : [
+    {'id': '1', 'language': 'en', 'text': 'I had a wonderful experience! The rooms were wonderful and the staff was helpful.'},
+    {'id': '2', 'language': 'en', 'text': 'I had a terrible time at the hotel. The staff was rude and the food was awful.'},  
+    ]}
+
     airport = parse_text("AirportLines.txt")
     flight = parse_text("FlightLines.txt")
 
-    airport_result = extract(airport)
-    flight_result = extract(flight)
+    airport_result = extract(airport, "airport")
+    flight_result = extract(flight, "flight")
 
-    print (airport_result)
+    # temp_result = extract(documents, "temp")
 
-    send_data_to_david("http://10.147.70.181:8080/User/updateSentimentalData", airport_result)
-
+    send_data_to_david("http://127.0.0.1:5000/api/data", airport_result)
+    send_data_to_david("http://127.0.0.1:5000/api/data", flight_result)
