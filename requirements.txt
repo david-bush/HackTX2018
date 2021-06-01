@@ -8,4 +8,4 @@ pycparser==2.19
 requests==2.20.0
 rev-ai==0.0.3
 sounddevice==0.3.12
-urllib3==1.24
+urllib3==1.26.5
